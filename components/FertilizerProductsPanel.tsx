@@ -1,7 +1,7 @@
 import { Card } from "@/components/ui/Card";
 import type { AdviceResult } from "@/lib/types";
 
-export function FertilizerProductsPanel({ result }: { result: AdviceResult | null }) {
+export default function FertilizerProductsPanel({ result }: { result: AdviceResult | null }) {
   return (
     <Card className="mt-4">
       <h3 className="font-semibold">Ürün karşılıkları (demo)</h3>
