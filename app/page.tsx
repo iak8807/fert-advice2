@@ -59,7 +59,7 @@ function getCrops(settings: SettingsV1): string[] {
 
 function availability(settings: SettingsV1, region: string, crop: string) {
   const has = (json: any) => {
-    const keys = (json.supported_region_tables as string[]).filter((k) => k.startsWith(`${region}|`));
+    const keys = ((json?.supported_region_tables ?? []) as string[]).filter((k) => k.startsWith(`${region}|`));
     for (const k of keys) {
       const node = json.tables_by_regionTable?.[k];
       if (!node) continue;
