@@ -1,6 +1,5 @@
 // lib/engine/schedule.ts
-import type { SchedulePreset, ScheduleResult } from "@/lib/types";
-
+import type { ProjectInput, SchedulePreset, ScheduleResult } from "@/lib/types";
 function sum(fracs: number[]) {
   return fracs.reduce((a, b) => a + b, 0);
 }
@@ -54,5 +53,27 @@ export function buildSchedule(args: {
       applications: pl.applications.map((a) => ({ ...a, totalKg: 0 }))
     })),
     messages: { farmer: [], expert: [] }
+  };
+}
+export function fillScheduleTotals(schedule: ScheduleResult, input: ProjectInput): ScheduleResult {
+  const areaDa = Number((input as any).area_da ?? (input as any).areaDa ?? 1);
+
+  return {
+    ...schedule,
+    plans: schedule.plans.map((plan: any) => {
+      const applications = (plan.applications ?? []).map((app: any) => {
+        const kgDa = Number(app.kgDa ?? 0);
+        const totalKg = kgDa * areaDa;
+        return { ...app, totalKg };
+      });
+
+      const planTotalKg = applications.reduce((s: number, a: any) => s + Number(a.totalKg ?? 0), 0);
+
+      return {
+        ...plan,
+        applications,
+        totalKg: planTotalKg,
+      };
+    }),
   };
 }
