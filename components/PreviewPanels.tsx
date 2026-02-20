@@ -68,7 +68,7 @@ export default function PreviewPanels({
         </div>
       </Card>
 
-      <FertilizerProductsPanel tone={tone} balance={computed?.balance} />
+      <FertilizerProductsPanel result={computed?.engine ?? null} />
       <SchedulePanel tone={tone} schedule={computed?.schedule} precision={project.prefs.precisionKgDa} />
       <CostPanel tone={tone} cost={computed?.cost} scenarios={project.scenarios} />
       <ExplainabilityPanel tone={tone} explain={computed?.engine?.explain} />
