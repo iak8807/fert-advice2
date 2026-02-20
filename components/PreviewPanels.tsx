@@ -2,11 +2,11 @@
 "use client";
 
 import type { ProjectInput, SettingsV1 } from "@/lib/types";
-import PdfButton from "@/components/PdfButton";
-import FertilizerProductsPanel from "@/components/FertilizerProductsPanel";
-import SchedulePanel from "@/components/SchedulePanel";
-import CostPanel from "@/components/CostPanel";
-import ExplainabilityPanel from "@/components/ExplainabilityPanel";
+import { PdfButton } from "@/components/PdfButton";
+import { FertilizerProductsPanel } from "@/components/FertilizerProductsPanel";
+import { SchedulePanel } from "@/components/SchedulePanel";
+import { CostPanel } from "@/components/CostPanel";
+import { ExplainabilityPanel } from "@/components/ExplainabilityPanel";
 import { Card, CardTitle } from "@/components/ui/Card";
 
 export default function PreviewPanels({
