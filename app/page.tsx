@@ -35,10 +35,10 @@ function seedIfNeeded() {
 
 function getRegions(settings: SettingsV1): string[] {
   const all = new Set<string>();
-  const add = (keys: string[]) => keys.forEach((k) => all.add(k.split("|")[0]));
-  add(settings.referenceTables.N.supported_region_tables);
-  add(settings.referenceTables.P.supported_region_tables);
-  add(settings.referenceTables.K.supported_region_tables);
+  const add = (keys?: string[]) => keys?.forEach((k) => all.add(k));
+  add(settings?.referenceTables?.N?.supportedRegions);
+  add(settings?.referenceTables?.P?.supportedRegions);
+  add(settings?.referenceTables?.K?.supportedRegions);
   return Array.from(all).sort((a, b) => a.localeCompare(b, "tr"));
 }
 
