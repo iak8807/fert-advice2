@@ -1,6 +1,7 @@
 // components/Stepper.tsx
 "use client";
 
+import { useState } from "react";
 import type { ProjectInput, SettingsV1 } from "@/lib/types";
 import { Card, CardDesc, CardTitle } from "@/components/ui/Card";
 import StepNav from "@/components/StepNav";
@@ -27,13 +28,7 @@ export default function Stepper({
   crops: string[];
   availability: { N: boolean; P: boolean; K: boolean };
 }) {
-  const [step, setStep] = (globalThis as any).__stepState__?.use?.() ?? [];
-  // fallback local state without global hack
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const React = require("react") as typeof import("react");
-  const [localStep, setLocalStep] = React.useState<number>(1);
-  const currentStep = typeof step === "number" ? step : localStep;
-  const setCurrentStep = typeof setStep === "function" ? setStep : setLocalStep;
+  const [currentStep, setCurrentStep] = useState<number>(1);
 
   return (
     <div className="space-y-4">
