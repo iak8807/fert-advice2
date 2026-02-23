@@ -39,6 +39,18 @@ function selectRegionTableKey(args: {
     return { exact, norm, total: exact * 2 + norm };
   };
 
+  if (prefFiltered.length > 0) {
+    for (const k of candidateKeys) {
+      const s = score(k);
+      if (s.total > 0) {
+        const m = k.match(/\|table(\d+)/i);
+        return { regionTableKey: k, tableId: m ? `table${m[1]}` : undefined };
+      }
+    }
+    const m = candidateKeys[0].match(/\|table(\d+)/i);
+    return { regionTableKey: candidateKeys[0], tableId: m ? `table${m[1]}` : undefined };
+  }
+
   let best = candidateKeys[0];
   let bestScore = score(best);
   for (const k of candidateKeys.slice(1)) {
